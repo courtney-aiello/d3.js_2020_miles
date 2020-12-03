@@ -1,1 +1,3 @@
-# d3.js_2020_miles
+# 2020 Miles Ran
+
+TODO: Scatterplot in d3.js
