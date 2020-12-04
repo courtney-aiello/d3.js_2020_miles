@@ -66,6 +66,7 @@ div.tooltip {
     var yAxis = d3.svg.axis().scale(y)
         .orient("left").ticks(12);
 
+
     // Define the line
     var valueline = d3.svg.line()
         .x(function(d) { return x(d.date); })
@@ -76,6 +77,9 @@ div.tooltip {
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
+        .call(d3.behavior.zoom().on("zoom", function () {
+            svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+        }))
         .append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
@@ -87,6 +91,8 @@ div.tooltip {
         .style("font-size", "18px")
         .style("font-weight", "bold")
         .text("Miles Ran in 2020");
+
+
 
     // Get the data
     d3.csv("data.csv", function(error, data) {
